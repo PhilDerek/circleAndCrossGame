@@ -1,0 +1,34 @@
+{
+  "name": "circleandcross",
+  "version": "1.0.0",
+  "description": "Simple game where player stands against computer. If player write his 3 signs next to each other vertically horizontally or diagonally before enemy, he will win.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhilDerek/circleAndCrossGame.git"
+  },
+  "keywords": [
+    "game",
+    "circle_and_cross",
+    "entertainment"
+  ],
+  "author": "PhilDerek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhilDerek/circleAndCrossGame/issues"
+  },
+  "homepage": "https://github.com/PhilDerek/circleAndCrossGame#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^3.0.2",
+    "node-sass": "^4.11.0"
+  }
+}
