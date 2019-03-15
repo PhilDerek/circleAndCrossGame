@@ -5,10 +5,59 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Circle and Cross Game</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="/dest/style.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="/dest/style.css">
     </head>
     <body>
-        
-        <script src="/dest/main.min.js"></script>
+        <header id="header" class="header active">
+            <div class="header__headlineBox">
+                <h1 class="header__headlineBox__mainHeadline">Welcome to tic tac toe game!</h1>
+            </div>
+        </header>
+        <section class="welcome">
+            <div class="welcome__container">
+                <h2 class="welcome__container__headline">Let's play a game</h2>
+                <p class="welcome__container__text">Click to pass to sign choose section</p>
+                <button id="welcomeBtn" class="header__headlineBox__btn">Next</button>
+            </div>
+        </section>
+        <section class="signChoose">
+            <div class="signChoose__container">
+                <h2 class="signChoose__container__headline">Choose wisely:</h2>
+                <div class="signChoose__container__boxSigns">
+                    <button class="signChoose__container__boxSigns__btn signChoose__container__boxSigns__btn--circle"></button>
+                    <button class="signChoose__container__boxSigns__btn signChoose__container__boxSigns__btn--cross"></button>
+                </div>
+            </div>
+        </section>
+        <section class="playing">
+            <div class="playing__container">
+                <table class="playing__container__table">
+                    <tr class="playing__container__table__row">
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                    </tr>
+                    <tr class="playing__container__table__row">
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                    </tr>
+                    <tr class="playing__container__table__row">
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                        <td class="playing__container__table__row__cell"><img class="playing__container__table__row__cell__img" src="" alt=" "></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <section class="afterGame">
+            <div class="afterGame__container">
+                <h2 class="afterGame__container__headline"></h2>
+                <button class="afterGame__container__btn">Play again</button>
+            </div>
+        </section>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/dest/main.js"></script>
     </body>
 </html>

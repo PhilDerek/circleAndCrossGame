@@ -1,2 +1,134 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("../dest/images/tic-tac-toe-background.jpg") center no-repeat;
+  font-family: Arial, Helvetica, sans-serif; }
+  body > * {
+    display: none; }
+
+.active {
+  display: block;
+  animation: title .5s; }
+
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: rgba(100, 0, 100, 0.8);
+  padding: 5vh 10vh;
+  color: #FFFFFF;
+  border-radius: 30px; }
+
+.welcome {
+  background-color: rgba(100, 0, 100, 0.8);
+  padding: 5vh 10vh;
+  color: #FFFFFF;
+  border-radius: 30px; }
+  .welcome .welcome__container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center; }
+    .welcome .welcome__container .welcome__container__headline {
+      text-transform: uppercase;
+      font-size: 2rem; }
+    .welcome .welcome__container .header__headlineBox__btn {
+      cursor: pointer;
+      padding: 3vh;
+      background-color: #000000;
+      color: #FFFFFF;
+      border: 0;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: .3s; }
+      .welcome .welcome__container .header__headlineBox__btn:hover {
+        background-color: #fff;
+        color: #000000; }
+
+.signChoose {
+  background-color: rgba(100, 0, 100, 0.8);
+  padding: 5vh 10vh;
+  color: #FFFFFF;
+  border-radius: 30px; }
+  .signChoose .signChoose__container {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap; }
+    .signChoose .signChoose__container .signChoose__container__headline {
+      font-size: 2rem; }
+    .signChoose .signChoose__container .signChoose__container__boxSigns {
+      align-self: stretch;
+      display: flex;
+      justify-content: space-around; }
+      .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn {
+        width: 75px;
+        height: 75px;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer; }
+        .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn:active {
+          transform: scale(0.9);
+          box-shadow: 4px 4px 3px black; }
+      .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn--circle {
+        background: #FFFFFF url("../dest/images/circleSmall.png") center no-repeat; }
+      .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn--cross {
+        background: #FFFFFF url("../dest/images/x-crossSmall.png") center no-repeat; }
+
+.playing .playing__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 39vw;
+  height: 39vw; }
+  .playing .playing__container .playing__container__table,
+  .playing .playing__container .playing__container__table__row__cell {
+    border: 4px solid black;
+    box-shadow: 0 0 4px 2px black; }
+  .playing .playing__container .playing__container__table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; }
+  .playing .playing__container .playing__container__table__row__cell {
+    cursor: pointer;
+    width: 33.3%;
+    height: 33.3%;
+    text-align: center; }
+    .playing .playing__container .playing__container__table__row__cell:hover {
+      background-color: darkorchid; }
+    .playing .playing__container .playing__container__table__row__cell .playing__container__table__row__cell__img {
+      max-width: 100%;
+      display: none; }
+    .playing .playing__container .playing__container__table__row__cell .show {
+      display: inline; }
+
+.afterGame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(150, 150, 150, 0.7); }
+  .afterGame .afterGame__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+
+@keyframes title {
+  from {
+    top: -60vh;
+    transform: scale(0); }
+  to {
+    top: 0;
+    transform: scale(1); } }
 
 /*# sourceMappingURL=style.css.map */

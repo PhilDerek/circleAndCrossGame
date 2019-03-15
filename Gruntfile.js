@@ -39,10 +39,33 @@ module.exports = function(grunt) {
             my_target: {
                 files: [{
                     expand: true,
-                    cwd: 'src/',
+                    cwd: 'dest/',
                     src: ['*.js', '!*.min.js'],
                     dest: 'dest/',
                     ext: '.min.js'
+                }]
+            }
+        },
+
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['@babel/preset-env']
+            },
+            dist: {
+                files: {
+                    'dest/main.js': 'src/main.js'
+                }
+            }
+        },
+
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/images/',
+                    src: ['**/*.{png,jpg,JPG,jpeg,gif}'],
+                    dest: 'dest/images/'
                 }]
             }
         },
@@ -52,9 +75,9 @@ module.exports = function(grunt) {
                 files: '**/*.scss',
                 tasks: ['sass']
             },
-            cssmin: {
-                files: '**/*.css',
-                tasks: ['cssmin']
+            babel: {
+                files: 'src/main.js',
+                tasks: ['babel']
             }
         }
     });
@@ -62,8 +85,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
   
-    grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'watch']);
+    grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'babel', 'imagemin', 'watch']);
   
 };
