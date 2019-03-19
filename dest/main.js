@@ -1,7 +1,8 @@
 "use strict";
 
 $(function () {
-  var $title = $("#header");
+  var $description = $(".description");
+  var $descriptionBtn = $(".description__container__btn");
   var $welcome = $(".welcome");
   var $afterGame = $(".afterGame");
   var $afterGameBtn = $(".afterGame__container__btn");
@@ -9,10 +10,10 @@ $(function () {
   var circleSource = "dest/images/circleSmall.png";
   var crossSource = "dest/images/x-crossSmall.png";
 
-  function nextSection(hideElem, showElem, time) {
+  function nextSection(showElem, time, hideElem) {
     var changeActive = setTimeout(function () {
-      hideElem.removeClass("active");
       showElem.addClass("active");
+      hideElem.removeClass("active");
     }, time);
     return changeActive;
   }
@@ -31,17 +32,17 @@ $(function () {
 
   function checkPlayerWin(playerSign) {
     if ($tableCells.eq(0).hasClass("".concat(playerSign)) && $tableCells.eq(3).hasClass("".concat(playerSign)) && $tableCells.eq(6).hasClass("".concat(playerSign)) || $tableCells.eq(1).hasClass("".concat(playerSign)) && $tableCells.eq(4).hasClass("".concat(playerSign)) && $tableCells.eq(7).hasClass("".concat(playerSign)) || $tableCells.eq(2).hasClass("".concat(playerSign)) && $tableCells.eq(5).hasClass("".concat(playerSign)) && $tableCells.eq(8).hasClass("".concat(playerSign)) || $tableCells.eq(0).hasClass("".concat(playerSign)) && $tableCells.eq(4).hasClass("".concat(playerSign)) && $tableCells.eq(8).hasClass("".concat(playerSign)) || $tableCells.eq(2).hasClass("".concat(playerSign)) && $tableCells.eq(4).hasClass("".concat(playerSign)) && $tableCells.eq(6).hasClass("".concat(playerSign)) || $tableCells.eq(0).hasClass("".concat(playerSign)) && $tableCells.eq(1).hasClass("".concat(playerSign)) && $tableCells.eq(2).hasClass("".concat(playerSign)) || $tableCells.eq(3).hasClass("".concat(playerSign)) && $tableCells.eq(4).hasClass("".concat(playerSign)) && $tableCells.eq(5).hasClass("".concat(playerSign)) || $tableCells.eq(6).hasClass("".concat(playerSign)) && $tableCells.eq(7).hasClass("".concat(playerSign)) && $tableCells.eq(8).hasClass("".concat(playerSign))) {
-      endGame();
+      endGame("You");
     }
   }
 
   function checkComputerWin(npcSign) {
     if ($tableCells.eq(0).hasClass("".concat(npcSign)) && $tableCells.eq(3).hasClass("".concat(npcSign)) && $tableCells.eq(6).hasClass("".concat(npcSign)) || $tableCells.eq(1).hasClass("".concat(npcSign)) && $tableCells.eq(4).hasClass("".concat(npcSign)) && $tableCells.eq(7).hasClass("".concat(npcSign)) || $tableCells.eq(2).hasClass("".concat(npcSign)) && $tableCells.eq(5).hasClass("".concat(npcSign)) && $tableCells.eq(8).hasClass("".concat(npcSign)) || $tableCells.eq(0).hasClass("".concat(npcSign)) && $tableCells.eq(4).hasClass("".concat(npcSign)) && $tableCells.eq(8).hasClass("".concat(npcSign)) || $tableCells.eq(2).hasClass("".concat(npcSign)) && $tableCells.eq(4).hasClass("".concat(npcSign)) && $tableCells.eq(6).hasClass("".concat(npcSign)) || $tableCells.eq(0).hasClass("".concat(npcSign)) && $tableCells.eq(1).hasClass("".concat(npcSign)) && $tableCells.eq(2).hasClass("".concat(npcSign)) || $tableCells.eq(3).hasClass("".concat(npcSign)) && $tableCells.eq(4).hasClass("".concat(npcSign)) && $tableCells.eq(5).hasClass("".concat(npcSign)) || $tableCells.eq(6).hasClass("".concat(npcSign)) && $tableCells.eq(7).hasClass("".concat(npcSign)) && $tableCells.eq(8).hasClass("".concat(npcSign))) {
-      endGame();
+      endGame("PC");
     }
   }
 
-  function endGame() {
+  function endGame(winner) {
     winnerKnown = true;
     var $checkedPools = $(".checked");
     $checkedPools.each(function () {
@@ -52,16 +53,24 @@ $(function () {
       }
 
       $(this).children(".playing__container__table__row__cell__img").attr("src", "").removeClass("show");
-      $afterGame.show();
+      $(".afterGame__container__headline").text("".concat(winner, " won"));
+      $afterGame.fadeIn("slow");
     });
   }
 
-  nextSection($title, $welcome, 800);
+  nextSection($welcome, 5000);
+  setTimeout(function () {
+    $description.show();
+  }, 5000);
   var $welcomeBtn = $("#welcomeBtn");
   var $signChoose = $(".signChoose");
   var $playing = $(".playing");
+  $descriptionBtn.on("click", function () {
+    var descriptionContent = $(".description__container__content");
+    descriptionContent.toggleClass("hide");
+  });
   $welcomeBtn.on("click", function () {
-    nextSection($welcome, $signChoose, 1);
+    nextSection($signChoose, 1, $welcome);
   });
   var playerSign = "";
   var $signs = $(".signChoose__container__boxSigns__btn");
@@ -99,10 +108,16 @@ $(function () {
           npcMove(circleSource, "circle");
         }
       }
+
+      if ($(".playing__container__table__row__cell").not(".checked").length === 0) {
+        endGame("Draw, nobody");
+      }
+
+      ;
     });
   });
   $afterGameBtn.on("click", function () {
-    $afterGame.hide();
+    $afterGame.fadeOut("slow");
   });
 });
 //# sourceMappingURL=main.js.map

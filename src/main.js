@@ -1,5 +1,6 @@
 $(function () {
-    const $title = $("#header");
+    const $description = $(".description");
+    const $descriptionBtn = $(".description__container__btn");
     const $welcome = $(".welcome");
     const $afterGame = $(".afterGame");
     const $afterGameBtn = $(".afterGame__container__btn");
@@ -8,10 +9,10 @@ $(function () {
     const circleSource = "dest/images/circleSmall.png";
     const crossSource = "dest/images/x-crossSmall.png";
 
-    function nextSection (hideElem, showElem, time) {
+    function nextSection (showElem, time, hideElem) {
         const changeActive = setTimeout(() => {
-            hideElem.removeClass("active");
             showElem.addClass("active");
+            hideElem.removeClass("active");
         }, time);
         return changeActive;
     }
@@ -29,17 +30,17 @@ $(function () {
 
     function checkPlayerWin (playerSign) {
         if (($tableCells.eq(0).hasClass(`${playerSign}`) && $tableCells.eq(3).hasClass(`${playerSign}`) && $tableCells.eq(6).hasClass(`${playerSign}`)) || ($tableCells.eq(1).hasClass(`${playerSign}`) && $tableCells.eq(4).hasClass(`${playerSign}`) && $tableCells.eq(7).hasClass(`${playerSign}`)) || ($tableCells.eq(2).hasClass(`${playerSign}`) && $tableCells.eq(5).hasClass(`${playerSign}`) && $tableCells.eq(8).hasClass(`${playerSign}`)) || ($tableCells.eq(0).hasClass(`${playerSign}`) && $tableCells.eq(4).hasClass(`${playerSign}`) && $tableCells.eq(8).hasClass(`${playerSign}`)) || ($tableCells.eq(2).hasClass(`${playerSign}`) && $tableCells.eq(4).hasClass(`${playerSign}`) && $tableCells.eq(6).hasClass(`${playerSign}`)) || ($tableCells.eq(0).hasClass(`${playerSign}`) && $tableCells.eq(1).hasClass(`${playerSign}`) && $tableCells.eq(2).hasClass(`${playerSign}`)) || ($tableCells.eq(3).hasClass(`${playerSign}`) && $tableCells.eq(4).hasClass(`${playerSign}`) && $tableCells.eq(5).hasClass(`${playerSign}`)) || ($tableCells.eq(6).hasClass(`${playerSign}`) && $tableCells.eq(7).hasClass(`${playerSign}`) && $tableCells.eq(8).hasClass(`${playerSign}`))) {
-            endGame();
+            endGame("You");
         }
     }
 
     function checkComputerWin (npcSign) {
         if (($tableCells.eq(0).hasClass(`${npcSign}`) && $tableCells.eq(3).hasClass(`${npcSign}`) && $tableCells.eq(6).hasClass(`${npcSign}`)) || ($tableCells.eq(1).hasClass(`${npcSign}`) && $tableCells.eq(4).hasClass(`${npcSign}`) && $tableCells.eq(7).hasClass(`${npcSign}`)) || ($tableCells.eq(2).hasClass(`${npcSign}`) && $tableCells.eq(5).hasClass(`${npcSign}`) && $tableCells.eq(8).hasClass(`${npcSign}`)) || ($tableCells.eq(0).hasClass(`${npcSign}`) && $tableCells.eq(4).hasClass(`${npcSign}`) && $tableCells.eq(8).hasClass(`${npcSign}`)) || ($tableCells.eq(2).hasClass(`${npcSign}`) && $tableCells.eq(4).hasClass(`${npcSign}`) && $tableCells.eq(6).hasClass(`${npcSign}`)) || ($tableCells.eq(0).hasClass(`${npcSign}`) && $tableCells.eq(1).hasClass(`${npcSign}`) && $tableCells.eq(2).hasClass(`${npcSign}`)) || ($tableCells.eq(3).hasClass(`${npcSign}`) && $tableCells.eq(4).hasClass(`${npcSign}`) && $tableCells.eq(5).hasClass(`${npcSign}`)) || ($tableCells.eq(6).hasClass(`${npcSign}`) && $tableCells.eq(7).hasClass(`${npcSign}`) && $tableCells.eq(8).hasClass(`${npcSign}`))) {
-            endGame();
+            endGame("PC");
         }
     }
 
-    function endGame () {
+    function endGame (winner) {
         winnerKnown = true;
         const $checkedPools = $(".checked");
         $checkedPools.each(function () {
@@ -49,18 +50,27 @@ $(function () {
                 $(this).removeClass("checked x-cross");
             }
             $(this).children(".playing__container__table__row__cell__img").attr("src", "").removeClass("show");
-            $afterGame.show();
+            $(".afterGame__container__headline").text(`${winner} won`);
+            $afterGame.fadeIn("slow");
         })
     }
 
-    nextSection($title, $welcome, 800);
+    nextSection($welcome, 5000);
+    setTimeout( () => {
+        $description.show()
+    }, 5000)
 
     const $welcomeBtn = $("#welcomeBtn");
     const $signChoose = $(".signChoose");
     const $playing = $(".playing");
 
+    $descriptionBtn.on("click", () => {
+        const descriptionContent = $(".description__container__content");
+        descriptionContent.toggleClass("hide");
+    })
+
     $welcomeBtn.on("click", () => {
-        nextSection($welcome, $signChoose, 1);
+        nextSection($signChoose, 1, $welcome);
     });
 
     let playerSign = "";
@@ -100,9 +110,12 @@ $(function () {
                     npcMove(circleSource, "circle");
                 }
             }
+            if ($(".playing__container__table__row__cell").not(".checked").length === 0) {
+                endGame("Draw, nobody");
+            };
         })
     });
     $afterGameBtn.on("click", () => {
-        $afterGame.hide();
+        $afterGame.fadeOut("slow");
     })
 });

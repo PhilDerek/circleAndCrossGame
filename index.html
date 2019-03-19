@@ -5,19 +5,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Circle and Cross Game</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="/dest/style.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="/dest/style.min.css">
     </head>
     <body>
-        <header id="header" class="header active">
+        <header id="header" class="header">
             <div class="header__headlineBox">
                 <h1 class="header__headlineBox__mainHeadline">Welcome to tic tac toe game!</h1>
             </div>
         </header>
+        <section class="description">
+            <div class="description__container">
+                <button class="description__container__btn">Rules</button>
+                <div class="description__container__content hide">
+                    <p class="description__container__content__text">Player with circle starts the game. You can't draw character at occupied box. Player, who first draws 3 signs in row vertically, horizontally or diagonally wins.</p>
+                </div>
+            </div>
+        </section>
         <section class="welcome">
             <div class="welcome__container">
                 <h2 class="welcome__container__headline">Let's play a game</h2>
                 <p class="welcome__container__text">Click to pass to sign choose section</p>
-                <button id="welcomeBtn" class="header__headlineBox__btn">Next</button>
+                <button id="welcomeBtn" class="welcome__container__btn">Next</button>
             </div>
         </section>
         <section class="signChoose">
@@ -58,6 +66,6 @@
         </section>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="/dest/main.js"></script>
+        <script src="/dest/main.min.js"></script>
     </body>
 </html>
