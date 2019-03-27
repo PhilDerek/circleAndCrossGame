@@ -81,8 +81,7 @@ $(function () {
       playerSign = "cross";
     }
 
-    $signChoose.hide();
-    $playing.show();
+    nextSection($playing, 1, $signChoose);
 
     if (playerSign === "cross") {
       npcMove(circleSource, "circle");

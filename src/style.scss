@@ -5,6 +5,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
     box-sizing: border-box;
     display: flex;
     flex-flow: column wrap;
@@ -20,7 +21,7 @@ body {
 
 @mixin windowStyles {
     background-color: rgba(100, 0, 100, .8);
-    padding: 4vh 8vh;
+    padding: 2vh 4vh;
     color: #FFFFFF;
     border-radius: 30px;
 }
@@ -39,10 +40,22 @@ body {
     &::-moz-focus-inner {
         border: 0;
     }
+    &:active,
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin btnHover {
+    background-color: #fff;
+    color: #000000;
 }
 
 body .active {
-    display: block;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: scaleUp 1s;
 }
 body .hide {
@@ -52,31 +65,28 @@ body .hide {
 .header {
     width: 100%;
     .header__headlineBox {
+        @include windowStyles();
         position: absolute;
         top: 1%;
         left: 50%;
         transform: scale(1) translateX(-50%);
         transform-origin: left;
-        @include windowStyles();
         animation: showFromTop 5s;
+        text-align: center;
     }
 }
 .description {
     width: 100%;
     .description__container {
-        width: 25%;
         position: absolute;
-        top: 50%;
-        left: 17%;
-        transform: translate(-50%, -50%) scale(1);
         .description__container__btn {
             @include button();
         }
         .description__container__content {
             background-color: #000000;
             color: #FFFFFF;
-            margin-top: 3%;
-            padding: 3vh;
+            margin-top: 1%;
+            padding: 1.5vh;
             border-radius: 10px;
             font-size: 1.2rem;
         }
@@ -85,20 +95,16 @@ body .hide {
 
 .welcome {
     .welcome__container {
-        @include windowStyles();
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+        @include windowStyles();
         .welcome__container__headline {
             text-transform: uppercase;
             font-size: 2rem;
         }
         .welcome__container__btn {
             @include button();
-            &:hover {
-                background-color: #fff;
-                color: #000000;
-            }
         }
     }
 }
@@ -112,6 +118,7 @@ body .hide {
         flex-flow: column nowrap;
         .signChoose__container__headline {
             font-size: 2rem;
+            text-align: center;
         }
         .signChoose__container__boxSigns {
             align-self: stretch;
@@ -123,6 +130,10 @@ body .hide {
                 border: 0;
                 border-radius: 5px;
                 cursor: pointer;
+                &:active,
+                &:focus {
+                    outline: none;
+                }
                 &:active {
                     transform: scale(.9);
                     box-shadow: 4px 4px 3px black;
@@ -145,9 +156,6 @@ body .hide {
     width: 100%;
     min-height: 100vh;
     .playing__container {
-        width: 29vw;
-        height: 29vw;
-        margin: 25vh auto 0;
         .playing__container__table, 
         .playing__container__table__row__cell {
             border: 4px solid black;
@@ -164,9 +172,6 @@ body .hide {
             width: 33.3%;
             height: 33.3%;
             text-align: center;
-            &:hover {
-                background-color: darkorchid;
-            }
             .playing__container__table__row__cell__img {
                 max-width: 100%;
                 display: none;
@@ -191,6 +196,7 @@ body .hide {
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
+        max-width: 100%;
         background-color: rgba(100, 0, 100, .8);
         display: flex;
         flex-flow: column wrap;
@@ -202,11 +208,74 @@ body .hide {
         }
         .afterGame__container__btn {
             @include button();
-            &:hover {
-                background-color: #ffffff;
-                color: #000000;
-            }
         }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .description__container {
+        width: 25%;
+        top: 50%;        
+        left: 17%;
+        transform: translate(-50%, -50%) scale(1);
+        .description__container__btn:hover {
+            @include btnHover();
+        }
+    }
+    .welcome__container .welcome__container__btn:hover,
+    .afterGame__container .afterGame__container__btn:hover {
+        @include btnHover();
+    }
+    .playing__container {
+        width: 29vw;
+        height: 29vw;
+        .playing__container__table__row__cell:hover {
+            background-color: darkorchid;
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .description__container {
+        width: 28%;
+        bottom: 50%;
+        right: 1%;
+        transform: translateY(50%);
+        text-align: center;
+    }
+    .playing__container {
+        width: 40vw;
+        height: 40vw;
+    }
+}
+@media screen and (max-width: 900px) {
+    .description__container {
+        width: 60%;
+        bottom: 1%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .playing__container {
+        width: 50vw;
+        height: 50vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 12px;
+    }
+    .header__headlineBox,
+    .description__container,
+    .signChoose .signChoose__container {
+        width: 90vw;
+    }
+    .description .description__container .description__container__btn {
+        padding: 2vh;
+    }
+    .playing__container {
+        width: 77vw;
+        height: 77vw;
     }
 }
 

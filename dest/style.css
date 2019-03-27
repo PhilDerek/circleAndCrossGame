@@ -4,6 +4,7 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   box-sizing: border-box;
   display: flex;
   flex-flow: column wrap;
@@ -16,7 +17,10 @@ body {
     display: none; }
 
 body .active {
-  display: block;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: scaleUp 1s; }
 
 body .hide {
@@ -25,25 +29,22 @@ body .hide {
 .header {
   width: 100%; }
   .header .header__headlineBox {
+    background-color: rgba(100, 0, 100, 0.8);
+    padding: 2vh 4vh;
+    color: #FFFFFF;
+    border-radius: 30px;
     position: absolute;
     top: 1%;
     left: 50%;
     transform: scale(1) translateX(-50%);
     transform-origin: left;
-    background-color: rgba(100, 0, 100, 0.8);
-    padding: 4vh 8vh;
-    color: #FFFFFF;
-    border-radius: 30px;
-    animation: showFromTop 5s; }
+    animation: showFromTop 5s;
+    text-align: center; }
 
 .description {
   width: 100%; }
   .description .description__container {
-    width: 25%;
-    position: absolute;
-    top: 50%;
-    left: 17%;
-    transform: translate(-50%, -50%) scale(1); }
+    position: absolute; }
     .description .description__container .description__container__btn {
       cursor: pointer;
       padding: 3vh;
@@ -57,22 +58,24 @@ body .hide {
       transition: .3s; }
       .description .description__container .description__container__btn::-moz-focus-inner {
         border: 0; }
+      .description .description__container .description__container__btn:active, .description .description__container .description__container__btn:focus {
+        outline: none; }
     .description .description__container .description__container__content {
       background-color: #000000;
       color: #FFFFFF;
-      margin-top: 3%;
-      padding: 3vh;
+      margin-top: 1%;
+      padding: 1.5vh;
       border-radius: 10px;
       font-size: 1.2rem; }
 
 .welcome .welcome__container {
-  background-color: rgba(100, 0, 100, 0.8);
-  padding: 4vh 8vh;
-  color: #FFFFFF;
-  border-radius: 30px;
   display: flex;
   flex-flow: column nowrap;
-  align-items: center; }
+  align-items: center;
+  background-color: rgba(100, 0, 100, 0.8);
+  padding: 2vh 4vh;
+  color: #FFFFFF;
+  border-radius: 30px; }
   .welcome .welcome__container .welcome__container__headline {
     text-transform: uppercase;
     font-size: 2rem; }
@@ -89,13 +92,12 @@ body .hide {
     transition: .3s; }
     .welcome .welcome__container .welcome__container__btn::-moz-focus-inner {
       border: 0; }
-    .welcome .welcome__container .welcome__container__btn:hover {
-      background-color: #fff;
-      color: #000000; }
+    .welcome .welcome__container .welcome__container__btn:active, .welcome .welcome__container .welcome__container__btn:focus {
+      outline: none; }
 
 .signChoose .signChoose__container {
   background-color: rgba(100, 0, 100, 0.8);
-  padding: 4vh 8vh;
+  padding: 2vh 4vh;
   color: #FFFFFF;
   border-radius: 30px;
   width: 40vw;
@@ -103,7 +105,8 @@ body .hide {
   align-items: center;
   flex-flow: column nowrap; }
   .signChoose .signChoose__container .signChoose__container__headline {
-    font-size: 2rem; }
+    font-size: 2rem;
+    text-align: center; }
   .signChoose .signChoose__container .signChoose__container__boxSigns {
     align-self: stretch;
     display: flex;
@@ -114,6 +117,8 @@ body .hide {
       border: 0;
       border-radius: 5px;
       cursor: pointer; }
+      .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn:active, .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn:focus {
+        outline: none; }
       .signChoose .signChoose__container .signChoose__container__boxSigns .signChoose__container__boxSigns__btn:active {
         transform: scale(0.9);
         box-shadow: 4px 4px 3px black; }
@@ -127,31 +132,25 @@ body .hide {
 .playing {
   width: 100%;
   min-height: 100vh; }
-  .playing .playing__container {
-    width: 29vw;
-    height: 29vw;
-    margin: 25vh auto 0; }
-    .playing .playing__container .playing__container__table,
-    .playing .playing__container .playing__container__table__row__cell {
-      border: 4px solid black;
-      box-shadow: 0 0 4px 2px black; }
-    .playing .playing__container .playing__container__table {
-      border-collapse: collapse;
-      width: 100%;
-      height: 100%;
-      background-color: #FFFFFF; }
-    .playing .playing__container .playing__container__table__row__cell {
-      cursor: pointer;
-      width: 33.3%;
-      height: 33.3%;
-      text-align: center; }
-      .playing .playing__container .playing__container__table__row__cell:hover {
-        background-color: darkorchid; }
-      .playing .playing__container .playing__container__table__row__cell .playing__container__table__row__cell__img {
-        max-width: 100%;
-        display: none; }
-      .playing .playing__container .playing__container__table__row__cell .show {
-        display: inline; }
+  .playing .playing__container .playing__container__table,
+  .playing .playing__container .playing__container__table__row__cell {
+    border: 4px solid black;
+    box-shadow: 0 0 4px 2px black; }
+  .playing .playing__container .playing__container__table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; }
+  .playing .playing__container .playing__container__table__row__cell {
+    cursor: pointer;
+    width: 33.3%;
+    height: 33.3%;
+    text-align: center; }
+    .playing .playing__container .playing__container__table__row__cell .playing__container__table__row__cell__img {
+      max-width: 100%;
+      display: none; }
+    .playing .playing__container .playing__container__table__row__cell .show {
+      display: inline; }
 
 .afterGame {
   position: absolute;
@@ -166,6 +165,7 @@ body .hide {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    max-width: 100%;
     background-color: rgba(100, 0, 100, 0.8);
     display: flex;
     flex-flow: column wrap;
@@ -187,9 +187,61 @@ body .hide {
       transition: .3s; }
       .afterGame .afterGame__container .afterGame__container__btn::-moz-focus-inner {
         border: 0; }
-      .afterGame .afterGame__container .afterGame__container__btn:hover {
-        background-color: #ffffff;
-        color: #000000; }
+      .afterGame .afterGame__container .afterGame__container__btn:active, .afterGame .afterGame__container .afterGame__container__btn:focus {
+        outline: none; }
+
+@media screen and (min-width: 1200px) {
+  .description__container {
+    width: 25%;
+    top: 50%;
+    left: 17%;
+    transform: translate(-50%, -50%) scale(1); }
+    .description__container .description__container__btn:hover {
+      background-color: #fff;
+      color: #000000; }
+  .welcome__container .welcome__container__btn:hover,
+  .afterGame__container .afterGame__container__btn:hover {
+    background-color: #fff;
+    color: #000000; }
+  .playing__container {
+    width: 29vw;
+    height: 29vw; }
+    .playing__container .playing__container__table__row__cell:hover {
+      background-color: darkorchid; } }
+
+@media screen and (max-width: 1199px) {
+  .description__container {
+    width: 28%;
+    bottom: 50%;
+    right: 1%;
+    transform: translateY(50%);
+    text-align: center; }
+  .playing__container {
+    width: 40vw;
+    height: 40vw; } }
+
+@media screen and (max-width: 900px) {
+  .description__container {
+    width: 60%;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%); }
+  .playing__container {
+    width: 50vw;
+    height: 50vw; } }
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 12px; }
+  .header__headlineBox,
+  .description__container,
+  .signChoose .signChoose__container {
+    width: 90vw; }
+  .description .description__container .description__container__btn {
+    padding: 2vh; }
+  .playing__container {
+    width: 77vw;
+    height: 77vw; } }
 
 @keyframes showFromTop {
   0% {
